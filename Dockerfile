@@ -9,8 +9,7 @@ WORKDIR /app
 # Copy package.json vào container
 COPY package.json ./
 
-# Cài đặt sequelize-cli toàn cục nếu chưa có
-RUN npm install -g sequelize-cli
+RUN npm install
 
 # Copy toàn bộ mã nguồn của ứng dụng vào container
 COPY . .
