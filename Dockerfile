@@ -7,7 +7,10 @@ FROM node:lts-alpine
 WORKDIR /app
 
 # Cài đặt các dependencies cần thiết cho dự án
-RUN npm install --production
+RUN yarn install --production
+
+# Cài đặt sequelize-cli và nodemon (nếu cần thiết)
+RUN npm i -g sequelize-cli nodemon
 
 # Copy toàn bộ mã nguồn của ứng dụng vào container
 COPY . .
