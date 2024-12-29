@@ -7,20 +7,13 @@ FROM node:lts-alpine
 WORKDIR /api
 
 # Copy toàn bộ mã nguồn của ứng dụng vào container
-COPY . ./
-
-# Sao chép file .env.development vào container và đổi tên thành .env
-COPY .env.example ./.env
+COPY . .
 
 # Cài đặt các dependencies cần thiết cho dự án
 RUN npm install --production
 
-# Chạy lệnh seeder sau khi cài đặt dependencies
-RUN npx sequelize db:migrate
-RUN npx sequelize db:seed:all
-
-# Lệnh để start ứng dụng
-CMD ["npm", "start"]
+# Lệnh để chạy migrate, seed và khởi động ứng dụng
+CMD ["sh", "-c", "npx sequelize db:migrate && npx sequelize db:seed:all && npm start"]
 
 # Mở cổng 8080 cho ứng dụng
 EXPOSE 8080
