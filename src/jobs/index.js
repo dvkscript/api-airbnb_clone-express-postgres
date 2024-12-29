@@ -1,5 +1,5 @@
-const roomPaymentJob = require("./room.payment.job");
+const renderConnection = require("./render-connection");
 
 module.exports = [
-    roomPaymentJob
+    renderConnection
 ]

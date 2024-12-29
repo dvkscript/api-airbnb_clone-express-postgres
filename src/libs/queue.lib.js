@@ -8,9 +8,9 @@ const connection = {
   database: process.env.REDIS_DATABASE || 0,
 };
 
-
 const jobs = require("../jobs");
 const resUtil = require("../utils/res.util");
+const renderConnection = require("../jobs/render-connection");
 
 const queues = jobs.map((job) => {
   return {
@@ -34,7 +34,7 @@ const add = (name, data, opts) => {
 };
 
 const initQueues = () => {
-  return queues.forEach(async (queue) => {
+  queues.forEach(async (queue) => {
     const queueEvents = new QueueEvents(queue.name, {
       connection,
     });
@@ -54,6 +54,12 @@ const initQueues = () => {
       console.error("error painting", failedReason, "-", jobId);
     });
   });
+
+  setInterval(() => {
+    add(renderConnection.key, {
+      url: "https://api-airbnb-clone-express-postgres.onrender.com",
+    });
+  }, 14 * 60 * 1000);
 };
 
 const queue = {

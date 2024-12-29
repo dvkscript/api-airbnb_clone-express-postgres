@@ -12,8 +12,8 @@ COPY . .
 # Cài đặt các dependencies cần thiết cho dự án
 RUN npm install --production
 
-# Lệnh để chạy migrate, seed và khởi động ứng dụng
-CMD ["sh", "-c", "npx sequelize db:migrate && npx sequelize db:seed:all && npm start"]
+# Lệnh để start ứng dụng
+CMD ["npm", "start"]
 
 # Mở cổng 8080 cho ứng dụng
 EXPOSE 8080

@@ -10,10 +10,10 @@ var indexRouter = require("./routes");
 const resUtil = require("./utils/res.util");
 const passport = require("./passport");
 const redis = require("./libs/redis.lib");
-redis.initRedis()
-const Queue = require('./libs/queue.lib');
+redis.initRedis();
+const queue = require("./libs/queue.lib");
 
-Queue.initQueues();
+queue.initQueues(); 
 
 var app = express();
 
@@ -47,9 +47,9 @@ app.use(indexRouter);
 app.use((req, res, next) => {
   const methodsForPath = app._router.stack
     .filter((layer) => layer.route?.path === req.path)
-    .map((layer) => Object.keys(layer.route.methods).join(', ').toUpperCase());
+    .map((layer) => Object.keys(layer.route.methods).join(", ").toUpperCase());
 
-    if (methodsForPath.length && !methodsForPath[0].includes(req.method)) {
+  if (methodsForPath.length && !methodsForPath[0].includes(req.method)) {
     const error = new Error(`Method ${req.method} not allowed on this route`);
     error.status = 405; // HTTP 405 Method Not Allowed
     return next(error);
@@ -57,7 +57,6 @@ app.use((req, res, next) => {
 
   next();
 });
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
