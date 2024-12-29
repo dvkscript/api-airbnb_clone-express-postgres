@@ -13,7 +13,7 @@ COPY . ./
 COPY .env.example ./.env
 
 # Cài đặt các dependencies cần thiết cho dự án
-RUN yarn install --production
+RUN npm install --production
 
 # Chạy lệnh seeder sau khi cài đặt dependencies
 RUN npm run sequelize-setup
