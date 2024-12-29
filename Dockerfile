@@ -16,6 +16,7 @@ RUN npm i -g sequelize-cli nodemon
 COPY . .
 
 # Chạy lệnh seeder sau khi cài đặt dependencies
+RUN npx sequelize db:migrate
 RUN npx sequelize db:seed:all
 
 # Lệnh để start ứng dụng
