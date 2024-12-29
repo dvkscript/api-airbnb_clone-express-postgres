@@ -6,8 +6,8 @@ FROM node:lts-alpine
 # Đặt thư mục làm việc trong container
 WORKDIR /app
 
-# Copy package.json và yarn.lock để cài đặt dependencies trước
-COPY package.json yarn.lock ./
+# Copy package.json vào container
+COPY package.json ./
 
 # Cài đặt các dependencies cần thiết cho dự án
 RUN yarn install --production
