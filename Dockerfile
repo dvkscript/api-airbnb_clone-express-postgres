@@ -16,7 +16,8 @@ COPY .env.example ./.env
 RUN npm install --production
 
 # Chạy lệnh seeder sau khi cài đặt dependencies
-RUN npm run sequelize-setup
+RUN npx sequelize db:migrate
+RUN npx sequelize db:seed:all
 
 # Lệnh để start ứng dụng
 CMD ["npm", "start"]
