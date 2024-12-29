@@ -9,8 +9,8 @@ WORKDIR /app
 # Copy package.json vào container
 COPY package.json ./
 
-# Cài đặt các dependencies cần thiết cho dự án
-RUN yarn install --production
+# Cài đặt sequelize-cli toàn cục nếu chưa có
+RUN npm install -g sequelize-cli
 
 # Copy toàn bộ mã nguồn của ứng dụng vào container
 COPY . .
