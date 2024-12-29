@@ -1,0 +1,22 @@
+require("dotenv").config();
+
+const envConfig = {
+  JWT_ADMIN_SECRET: process.env.JWT_ADMIN_SECRET,
+  JWT_ADMIN_ACCESS_TOKEN_EXPIRE:
+    process.env.JWT_ADMIN_ACCESS_TOKEN_EXPIRE || "5m",
+  JWT_ADMIN_REFRESH_TOKEN_EXPIRE:
+    process.env.JWT_ADMIN_REFRESH_TOKEN_EXPIRE || "30m",
+
+  JWT_USER_SECRET: process.env.JWT_USER_SECRET,
+  JWT_USER_ACCESS_TOKEN_EXPIRE:
+    process.env.JWT_USER_ACCESS_TOKEN_EXPIRE || "5m",
+  JWT_USER_REFRESH_TOKEN_EXPIRE:
+    process.env.JWT_USER_REFRESH_TOKEN_EXPIRE || "30m",
+    
+  HOSTING_USER: process.env.HOSTING_USER,
+  HOSTING_ADMIN: process.env.HOSTING_ADMIN,
+  PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID,
+  PAYPAL_CLIENT_SECRET: process.env.PAYPAL_CLIENT_SECRET
+};
+
+module.exports = envConfig;

@@ -1,0 +1,9 @@
+.env
+node_modules
+.vercel
+
+# webstorm
+.idea
+
+# docker
+docker-compose.yaml
