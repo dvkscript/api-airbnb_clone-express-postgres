@@ -6,18 +6,17 @@ FROM node:lts-alpine
 # Đặt thư mục làm việc trong container
 WORKDIR /app
 
+# Copy package.json và yarn.lock để cài đặt dependencies trước
+COPY package.json yarn.lock ./
+
 # Cài đặt các dependencies cần thiết cho dự án
 RUN yarn install --production
-
-# Cài đặt sequelize-cli và nodemon (nếu cần thiết)
-RUN npm i -g sequelize-cli nodemon
 
 # Copy toàn bộ mã nguồn của ứng dụng vào container
 COPY . .
 
-# Chạy lệnh seeder sau khi cài đặt dependencies
-RUN npx sequelize db:migrate
-RUN npx sequelize db:seed:all
+# Chạy lệnh sequelize-setup sau khi cài đặt dependencies
+RUN npm run sequelize-setup
 
 # Lệnh để start ứng dụng
 CMD ["npm", "start"]
