@@ -11,7 +11,7 @@ COPY . .
 RUN yarn install --production
 
 # Chạy lệnh seeder sau khi cài đặt dependencies
-RUN npx sequelize db:seed:all
+RUN ["npx sequelize db:seed:all"]
 
 # Lệnh để start ứng dụng
 CMD ["npm", "start"]
