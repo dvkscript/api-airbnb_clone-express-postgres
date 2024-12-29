@@ -4,17 +4,18 @@
 FROM node:lts-alpine
 
 # Đặt thư mục làm việc trong container
-WORKDIR /app
-
-# Copy package.json vào container
-COPY package.json ./
-
-RUN npm install
+WORKDIR /api
 
 # Copy toàn bộ mã nguồn của ứng dụng vào container
-COPY . .
+COPY . ./
 
-# Chạy lệnh sequelize-setup sau khi cài đặt dependencies
+# Sao chép file .env.development vào container và đổi tên thành .env
+COPY .env.example ./.env
+
+# Cài đặt các dependencies cần thiết cho dự án
+RUN yarn install --production
+
+# Chạy lệnh seeder sau khi cài đặt dependencies
 RUN npm run sequelize-setup
 
 # Lệnh để start ứng dụng
