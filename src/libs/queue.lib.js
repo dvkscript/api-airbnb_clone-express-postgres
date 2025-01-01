@@ -54,12 +54,14 @@ const initQueues = () => {
       console.error("error painting", failedReason, "-", jobId);
     });
   });
-
-  setInterval(() => {
-    add(renderConnection.key, {
-      url: "https://api-airbnb-clone-express-postgres.onrender.com",
-    });
-  }, 14 * 60 * 1000);
+  
+  if (process.env.NODE_ENV !== "development") {
+    setInterval(() => {
+      add(renderConnection.key, {
+        url: "https://api-airbnb-clone-express-postgres.onrender.com",
+      });
+    }, 14 * 60 * 1000);
+  }
 };
 
 const queue = {

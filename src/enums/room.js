@@ -17,4 +17,9 @@ module.exports = {
     ROOM: "ROOM", // Room
     SHARED: "SHARED", // Shared Room
   }),
+  Discount: Object.freeze({
+    NEW_USER: "NEW_USER",
+    WEEKLY: "WEEKLY",
+    MONTHLY: "MONTHLY",
+  })
 };

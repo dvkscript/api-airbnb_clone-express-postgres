@@ -10,7 +10,7 @@ module.exports = {
     port: process.env.POSTGRES_PORT || 5432,
     dialect: process.env.POSTGRES_DIALECT || "postgres",
     dialectOptions: {
-      ssl: process.env.IS_DEV
+      ssl: process.env.NODE_ENV === "development"
         ? false
         : {
             require: true,
@@ -26,7 +26,7 @@ module.exports = {
     port: process.env.POSTGRES_PORT || 5432,
     dialect: process.env.POSTGRES_DIALECT || "postgres",
     dialectOptions: {
-      ssl: process.env.IS_DEV
+      ssl: process.env.NODE_ENV === "development"
         ? false
         : {
             require: true,

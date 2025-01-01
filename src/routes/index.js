@@ -7,7 +7,7 @@ const whitelist = [process.env.HOSTING_USER, process.env.HOSTING_ADMIN];
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (process.env.IS_DEV) {
+    if (process.env.NODE_ENV === "development") {
       return callback(null, true);
     }
     if (whitelist.includes(origin) || !origin) {

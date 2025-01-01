@@ -26,7 +26,7 @@ module.exports = resUtil.catchError((req, res, next) => {
   }
 
   req.validate = async (data, rules = {}) => {
-    const schema = object(rules);
+    const schema = object().shape(rules);
     try {
       let body = await schema.validate(data, {
         abortEarly: false,

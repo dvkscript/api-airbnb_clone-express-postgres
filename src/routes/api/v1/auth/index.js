@@ -6,5 +6,6 @@ router.use("/auth", require("./sign-up"));
 router.use("/auth", require("./refresh-token"));
 router.use("/auth", require("./google"));
 router.use("/auth", require("./github"));
+// router.use("/auth", require("./facebook"));
 
 module.exports = router;

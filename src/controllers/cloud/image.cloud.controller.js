@@ -2,7 +2,7 @@ const resUtil = require("../../utils/res.util");
 const path = require("path");
 
 module.exports = resUtil.catchError(async (req, res, next) => {
-  const cloudUrl = process.env.CLOUDINARY_UPLOAD_URL;
+  const cloudUrl = `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`;
   const { publicId } = req.params;
 
   const pathname = [req.params[0], publicId].filter((p) => p).join("/");
