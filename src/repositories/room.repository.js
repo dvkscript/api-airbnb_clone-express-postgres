@@ -106,14 +106,6 @@ class RoomRepository extends Repository {
           },
           separate: true,
         },
-        {
-          model: Address,
-          as: "address",
-        },
-        {
-          model: Structure,
-          as: "structure",
-        },
       ],
     };
     if (limit !== "all") {
@@ -125,18 +117,42 @@ class RoomRepository extends Repository {
       options.order = options.order.push([sort, order]);
     }
 
+    const includeAddress = {
+      model: Address,
+      as: "address",
+    };
+
     if (q) {
-      options.where[Op.and].push({
-        [Op.or]: {
-          title: {
-            [Op.iLike]: `%${q}%`,
+      const keywords = q.split(",").map((word) => word.trim());
+      const fields = [
+        "extras",
+        "street",
+        "district",
+        "province",
+        "country",
+        "country_code",
+      ];
+
+      includeAddress.where = {
+        [Op.or]: fields.map((field) => ({
+          [field]: {
+            [Op.or]: keywords.map((keyword) => ({
+              [Op.iLike]: `%${keyword}%`,
+            })),
           },
-          description: {
-            [Op.iLike]: `%${q}%`,
-          },
-        },
-      });
+        })),
+      };
     }
+    // options.where[Op.and].push({
+    //   [Op.or]: {
+    //     title: {
+    //       [Op.iLike]: `%${q}%`,
+    //     },
+    //     description: {
+    //       [Op.iLike]: `%${q}%`,
+    //     },
+    //   },
+    // });
 
     const includeStructure = {
       model: Structure,
@@ -152,6 +168,7 @@ class RoomRepository extends Repository {
     }
 
     options.include.push(includeStructure);
+    options.include.push(includeAddress);
 
     if (currentUserId) {
       options.include.push({
