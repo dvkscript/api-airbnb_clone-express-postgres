@@ -6,9 +6,12 @@
     "cloudinary": "./bin/cloudinary.js"
   },
   "scripts": {
+    "dev": "nodemon ./bin/www",
     "start": "nodemon ./bin/www",
     "cloudinary:undo:all": "node bin/cloudinary.js",
-    "sequelize-setup": "npx sequelize db:migrate && npx sequelize db:seed:all"
+    "postinstall": "npx sequelize-cli db:migrate",
+    "build": "npm run postinstall && npm run vercel-build",
+    "seeder": "npx sequelize-cli db:seed:all"
   },
   "dependencies": {
     "@faker-js/faker": "^9.3.0",
