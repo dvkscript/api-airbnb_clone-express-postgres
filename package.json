@@ -11,7 +11,7 @@
     "cloudinary:undo:all": "node bin/cloudinary.js",
     "postinstall": "npx sequelize-cli db:migrate",
     "build": "npm run postinstall && npm run vercel-build",
-    "seeder": "npx sequelize-cli db:seed:all"
+    "seeder": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
   },
   "dependencies": {
     "@faker-js/faker": "^9.3.0",
