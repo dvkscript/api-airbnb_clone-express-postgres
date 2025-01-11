@@ -8,10 +8,10 @@
   "scripts": {
     "dev": "nodemon ./bin/www",
     "start": "nodemon ./bin/www",
-    "cloudinary:undo:all": "node bin/cloudinary.js",
-    "postinstall": "npx sequelize-cli db:migrate",
-    "build": "npm run postinstall && npm run vercel-build",
-    "seeder": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
+    "migrate": "npx sequelize-cli db:migrate",
+    "seeder": "npx sequelize-cli db:seed:all",
+    "build": "npm run migrate && npm run seeder && npm run vercel-build",
+    "cloudinary:undo:all": "node bin/cloudinary.js"
   },
   "dependencies": {
     "@faker-js/faker": "^9.3.0",
