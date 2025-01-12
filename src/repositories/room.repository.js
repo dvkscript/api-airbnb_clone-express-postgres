@@ -142,17 +142,7 @@ class RoomRepository extends Repository {
           },
         })),
       };
-    }
-    // options.where[Op.and].push({
-    //   [Op.or]: {
-    //     title: {
-    //       [Op.iLike]: `%${q}%`,
-    //     },
-    //     description: {
-    //       [Op.iLike]: `%${q}%`,
-    //     },
-    //   },
-    // });
+    };
 
     const includeStructure = {
       model: Structure,
