@@ -10,7 +10,7 @@
     "start": "nodemon ./bin/www",
     "migrate": "npx sequelize-cli db:migrate",
     "seeder": "npx sequelize-cli db:seed:all",
-    "build": "npm run migrate && npm run seeder",
+    "build": "npm run migrate && npm run seeder && vercel build",
     "cloudinary:undo:all": "node bin/cloudinary.js"
   },
   "dependencies": {
