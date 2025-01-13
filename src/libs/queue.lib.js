@@ -10,7 +10,6 @@ const connection = {
 
 const jobs = require("../jobs");
 const resUtil = require("../utils/res.util");
-const renderConnection = require("../jobs/render-connection");
 
 const queues = jobs.map((job) => {
   return {
@@ -55,13 +54,6 @@ const initQueues = () => {
     });
   });
   
-  // if (process.env.NODE_ENV !== "development") {
-  //   setInterval(() => {
-  //     add(renderConnection.key, {
-  //       url: "https://api-airbnb-clone-express-postgres.onrender.com",
-  //     });
-  //   }, 14 * 60 * 1000);
-  // }
 };
 
 const queue = {
